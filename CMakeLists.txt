@@ -9,5 +9,8 @@ include_directories(${USER_HOME_DIRECTORY}/OpenGL/include)
 link_directories(${USER_HOME_DIRECTORY}/OpenGL/Libs)
 
 add_executable(learnOpenGL main.cpp
-        glad.c)
+        glad.c
+        shader.h
+        shader.cpp
+)
 target_link_libraries(learnOpenGL glfw3)
