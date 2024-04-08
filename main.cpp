@@ -62,14 +62,15 @@ int main() {
 
     // build and compile shader program
     // É necessário utilizar "../" porque o programa será executado dentro da pasta de build do cmake
-    // O erro "error C5145: must write to gl_Position" provavelmente está relacionado ao acesso a esses arquivos
-    // Shader para exercicios 5, 6, 7 e 9
+    // Shaders para exercicios 5, 6, 7 e 9
     Shader shader("../shaders/HelloTriangle.vert", "../shaders/HelloTriangle.frag");
-    // Shader para exercicio 8
+    // Shaders para exercicio 8
 //    Shader shader("../shaders/HelloTriangle.vert", "../shaders/ColoredTriangle.frag");
 
-    // Exercicios
-//    GLuint VAO = ex5();
+
+//     Exercicios
+    // Dois triangulos com borda e vertices diferenciados
+    GLuint VAO = ex5();
 
 //    // Circulo
 //    int sides = 32;
@@ -83,7 +84,7 @@ int main() {
 //    // Pacman
 //    int sides = 32;
 //    GLuint VAO = ex6(sides, true, false);
-//    // Star
+//    // Estrela
 //    int sides = 10;
 //    GLuint VAO = ex6(sides, false, true);
 
@@ -92,21 +93,13 @@ int main() {
 //    float radiusDecrement = 0.005f;
 //    GLuint VAO = ex7(initialRadius, radiusDecrement);
 
-    // Triangulo colorido
+//    // Triangulo colorido
 //    GLuint VAO = ex8();
-    // Uma possível configuração nos buffers é utilizando 6 floats para cada vértice,
-    // De forma que os 3 primeiros correspondam à localização X, Y e Z,
-    // e os últimos 3 correspondam à cor RGB.
-    // Para utilizar essas informações, precisamos setar dois attribute pointers:
-    // O primeiro para as posições, com 3 floats e stride de 6 floats, começando no índice 0;
-    // O segundo para as cores, com 3 floats e stride de 6 floats, começando no índice 1 (floats nas posições 3, 4 e 5 do array);
-    // O vertex shader para esse exercício precisa utilizar duas locations para extrair ambas informações do vértice,
-    // Que podem ser identificadas a partir das informações passadas na função glVertexAttribPointer
 
-    GLuint VAO = ex9();
+//    GLuint VAO = ex9();
+
 
     shader.use();
-
     // render loop
     while(!glfwWindowShouldClose(window)) {
         // input
@@ -117,11 +110,11 @@ int main() {
 
         glBindVertexArray(VAO);
 
-//        drawEx5(&shader);
+        drawEx5(&shader);
 //        drawEx6(&shader, sides);
 //        drawEx7(&shader, initialRadius, radiusDecrement);
 //        drawEx8();
-        drawEx9(&shader);
+//        drawEx9(&shader);
 
         glBindVertexArray(0);
 
@@ -385,6 +378,9 @@ GLuint ex9() {
             -0.5f, -0.2f, 0.0f,
             -0.3f, -0.0f, 0.0f,
             -0.3f, -0.4f, 0.0f,
+            // Bottom
+            -1.0f, -1.0f, 0.0f,
+            1.0f, -1.0f, 0.0f
     };
 
     GLuint VBO, VAO;
@@ -424,5 +420,8 @@ void drawEx9(Shader *shader) {
     glDrawArrays(GL_LINE_LOOP, 15, 4);
     glDrawArrays(GL_LINES, 19, 4);
 
+    // Bottom
+    shader->setVec4("inputColor", 1.0f, 0.6f, 0.0f, 1.0f);
+    glDrawArrays(GL_LINES, 23, 2);
 }
 
