@@ -61,16 +61,21 @@ int main() {
     }
 
     // build and compile shader program
-    // É necessário utilizar "../" porque o programa será executado dentro da pasta de build do cmake
+    // É necessário utilizar "../../" porque o programa será executado dentro da pasta de build/Debug com o cmake
+    // Se o executável acabar em outra pasta por algum motivo, será necessário alterar para a quantidade correta de "../"
     // Shaders para exercicios 5, 6, 7 e 9
-    Shader shader("../shaders/HelloTriangle.vert", "../shaders/HelloTriangle.frag");
+    char path1[] = "../../shaders/HelloTriangle.vert";
+    char path2[] = "../../shaders/HelloTriangle.frag";
+    Shader shader(path1, path2);
     // Shaders para exercicio 8
-//    Shader shader("../shaders/HelloTriangle.vert", "../shaders/ColoredTriangle.frag");
+//    char path1[] = "../../shaders/HelloTriangle.vert";
+//    char path2[] = "../../shaders/ColoredTriangle.frag";
+//    Shader shader("../../shaders/HelloTriangle.vert", "../../shaders/ColoredTriangle.frag");
 
 
-//     Exercicios
-    // Dois triangulos com borda e vertices diferenciados
-    GLuint VAO = ex5();
+//    // Exercicios
+//    // Dois triangulos com borda e vertices diferenciados
+//    GLuint VAO = ex5();
 
 //    // Circulo
 //    int sides = 32;
@@ -96,7 +101,7 @@ int main() {
 //    // Triangulo colorido
 //    GLuint VAO = ex8();
 
-//    GLuint VAO = ex9();
+   GLuint VAO = ex9();
 
 
     shader.use();
@@ -110,11 +115,11 @@ int main() {
 
         glBindVertexArray(VAO);
 
-        drawEx5(&shader);
-//        drawEx6(&shader, sides);
-//        drawEx7(&shader, initialRadius, radiusDecrement);
-//        drawEx8();
-//        drawEx9(&shader);
+    //    drawEx5(&shader);
+    //    drawEx6(&shader, sides);
+    //    drawEx7(&shader, initialRadius, radiusDecrement);
+    //    drawEx8();
+       drawEx9(&shader);
 
         glBindVertexArray(0);
 

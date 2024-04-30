@@ -10,5 +10,6 @@ link_directories(Dependencies/lib)
 add_executable(learnOpenGL main.cpp
         glad.c
         shader.h
+        shader.cpp
 )
 target_link_libraries(learnOpenGL glfw3)
