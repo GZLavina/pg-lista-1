@@ -60,7 +60,6 @@ int main() {
         return -1;
     }
 
-    // build and compile shader program
     // É necessário utilizar "../../" porque o programa será executado dentro da pasta de build/Debug com o cmake
     // Se o executável acabar em outra pasta por algum motivo, será necessário alterar para a quantidade correta de "../"
     // Shaders para exercicios 5, 6, 7 e 9
